@@ -43,11 +43,23 @@ export function sendOrbCollision(eatenOrbIndex) {
     }
 }
 
-export function getAllSnakes() {
-    // Here we'll subscribe to the 'allSnakePositions' event
-    return new Promise((resolve) => {
-        on('allSnakesPositions', (data) => {
-            resolve(data);
-        });
-    });
+export function sendSnakePosition(snakePosition) {
+    if (socket.readyState === WebSocket.OPEN) {
+        const message = {
+            type: 'snakePosition',
+            data: snakePosition
+        };
+        socket.send(JSON.stringify(message));
+    } else {
+        console.error('WebSocket is not open. Cannot send message.');
+    }
 }
+
+// export function getAllSnakes() {
+//     // Here we'll subscribe to the 'allSnakePositions' event
+//     return new Promise((resolve) => {
+//         on('allSnakesPositions', (data) => {
+//             resolve(data);
+//         });
+//     });
+// }

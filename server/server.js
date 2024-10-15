@@ -41,12 +41,13 @@ wss.on('connection', (ws) => {
         if (message.type === 'snakePosition') {
             // Update the current player's snake position
             player.snake = message.data;
+            // console.log("player.snake: ", player.snake);
 
             // Broadcast all snake positions to all players
             broadcastAllSnakes(player);
         } else if (message.type === 'orbCollision') {
             const eatenOrb = message.eatenOrb;
-            console.log("Orb eaten:", eatenOrb);
+            // console.log("Orb eaten:", eatenOrb);
 
             // Remove the orb from the orbs array on the server
             // orbs = orbs.filter(orb => orb.id !== eatenOrb.id);

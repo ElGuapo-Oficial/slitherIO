@@ -30,6 +30,7 @@ const game = async () => {
 
             // Move and draw the snake
             snake.moveSnake(mouseX, mouseY, speed);
+            sendSnakePosition(snake.getSnakePosition())
             snake.drawSnake(ctx);
 
             // Get all opponents snakes from the server
